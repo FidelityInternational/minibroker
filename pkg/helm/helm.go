@@ -107,6 +107,7 @@ func (c *Client) Initialize(repoURL string) error {
 	}
 
 	chartRepo.IndexFile = indexFile
+	c.log.V(3).Log("c.chartRepo: %s:", chartRepo)
 	c.chartRepo = chartRepo
 
 	c.log.V(3).Log("helm client: successfully initialized")
