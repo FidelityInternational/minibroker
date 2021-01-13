@@ -90,6 +90,7 @@ func (c *Client) Initialize(repoURL string) error {
 		chartCfg.URL = stableURL
 	}
 	chartRepo, err := c.repositoryClient.Initialize(&chartCfg, getter.All(c.settings))
+	chartRepo.Config.InsecureSkipTLSverify = true
 	if err != nil {
 		return fmt.Errorf("failed to initialize helm client: %v", err)
 	}

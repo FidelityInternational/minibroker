@@ -75,7 +75,7 @@ func (cc *ChartClient) Install(
 		return nil, fmt.Errorf("failed to install chart: %v", err)
 	}
 	// TODO(f0rmiga): deal with multiple chart URLs.
-	chartURL := fmt.Sprintf("https://harbor.default.svc.cluster.local/chartrepo/helm/%s", chartDef.URLs[0])
+	chartURL := fmt.Sprintf("https://harbor.minibroker.svc.cluster.local/chartrepo/helm/%s", chartDef.URLs[0])
 	cc.log.V(3).Log("chartURL:%s", chartURL)
 
 	chartRequested, err := cc.chartLoader.Load(chartURL)
