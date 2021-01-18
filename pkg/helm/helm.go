@@ -107,6 +107,14 @@ func (c *Client) Initialize(repoURL string) error {
 		return fmt.Errorf("failed to initialize helm client: %v", err)
 	}
 
+	for _, chartVers := range indexFile.Entries {
+		for _, ver := range chartVers {
+			for index, verURL := range ver.URLs {
+				ver.URLs[index] = fmt.Sprintf("%s/%s", chartRepo.Config.URL, verURL)
+			}
+		}
+	}
+
 	chartRepo.IndexFile = indexFile
 	c.log.V(3).Log("c.chartRepo: %s:", chartRepo)
 	c.chartRepo = chartRepo
